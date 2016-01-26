@@ -1,3 +1,4 @@
+```
 Usage: mow [OPTIONS] COMMAND [ARGS]...
 
 Options:
@@ -8,3 +9,4 @@ Options:
 
 Commands:
   scan
+```
