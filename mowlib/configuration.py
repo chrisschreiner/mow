@@ -3,8 +3,8 @@ import mowlib as mlb
 
 trace = 0
 verbose = 2
-application_name = "moviemower"
-movie_cache_filename = "moviemower-cache.json"
+application_name = "mow"
+movie_cache_filename = "mow-cache.json"
 
 
 class Config(object):

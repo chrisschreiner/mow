@@ -1,3 +1,9 @@
 *.pyc
 __pycache__
 .DS_Store
+pop/**
+mow.egg-info
+dist/**
+.idea
+venv/**
+requirements.txt
