@@ -2,7 +2,7 @@
 
 ###Purpose
 
-Clean up your folders of ripped movies. Changes filenames (of recognized movies) with a format that your movie app (tvOS/Plex etc) can detect.
+Clean up your folders of ripped movies. Changes filenames (of recognized movies) with a format that is more useful to you and your typical movie app (Air Video HD/Plex etc).
 
 Metadata and posters are also retrieved. A future version will enable extraction and processing of more data.
 
@@ -14,12 +14,14 @@ Metadata and posters are also retrieved. A future version will enable extraction
 
 ### Installation
 
-`$> pip install mow`
+Ready-made can be downloaded using the python pip utility.
+
+$> `pip install mow`
 
 Don't have pip? https://pip.readthedocs.org/en/stable/installing/#install-pip
 
 ### Usage
-```script
+```shell
 $> mow --help
 Usage: mow [OPTIONS] COMMAND [ARGS]...
 
@@ -43,7 +45,7 @@ Commands:
 ### Use-case 1: **Scan**
 _Pretend you have a folder with downloaded movies from the public domain. You want to clean it up and at the same time fetch meta-data and posters._
 
-```script
+```shell
 $> mow scan --help
 Usage: mow scan [OPTIONS] INPUT OUTPUT UNKNOWN                    
                                                                   
@@ -55,15 +57,16 @@ $> pwd
 ~
 $> ls movies
 Beau Ideal - 1931 ripper by someone.mp4
-The-Big-Cat-[1949]-redray-stolen.mks
+The-Big-Cat-[1949]-redray-stolen.mkv
 Bird.of.Paradise (1932) pirates-r-us.avi
 Giant.Leeches-1959-pb.mp4
+Homemovie-Aug-2012-playback.mp4
 ...
-$> mow scan  movies  properly-formatted-files  unrecognized-files
+$> mow scan movie-folder properly-formatted-files unrecognized-files
 ```
 
 Look at the results in the following folders when completed:
-```
+```shell
 ~/properly-formatted-files/.
 ~/properly-formatted-files/unrecognized/.
 ~/Library/Cache/mow-cache.json
@@ -72,11 +75,11 @@ Look at the results in the following folders when completed:
 
 *Please note:*
 
-~/properly-formatted-files/. contain hard-links to the original file.
+`~/properly-formatted-files/.` contain hard-links to the original file.
 ### Use-case 2: **List**
-_Pretend you've completed the previous use-case, and you want to generate data from your meta-data_
+_Pretend you've completed the previous use-case, and you want to show a listing of all movies recognized
 
-```script
+```shell
 $> mow list --help
 Usage: mow list [OPTIONS] OUTPUT IP-ADDRESS
                                                                   
@@ -84,4 +87,10 @@ Options:
   --help             Show this message and exit.   
 ```
 
-*coming soon*
+```
+$> mow list
+Adventure  Romance    War          79 min   5.3   Beau Ideal                          ~/output/Beau Ideal (1931).mp4
+Action     Adventure  Drama        75 min   5.1   The Big Cat                         ~/output/The Big Cat (1949).mkv
+Horror     Sci-Fi                  62 min   3.5   Attack of the Giant Leeches         ~/output/Attack of the Giant Leeches (1959).mp4
+```
+

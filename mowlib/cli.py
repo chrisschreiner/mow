@@ -17,24 +17,32 @@ def print_version(ctx, param, value):
 @click.group()
 @click.option('--version', '-V', is_flag=True, callback=print_version,
               expose_value=False, is_eager=True, help="Show version information.")
-@click.option('--verbose', '-v', type=click.Choice(['0','1','2','3']), default='0', help="Verbose output, higher number indicates more output.")
-@click.option('--preview', '-p', is_flag=True, help="Previews paths, but generates no output.")
+@click.option('--verbose', '-v', type=click.Choice(['0', '1', '2', '3']), default='0',
+              help="Verbose output, higher number indicates more output.")
 @click.option('--trace', '-t', type=int, default=0, help='Include a trace in output, number indicates depth of calls.')
 @pass_config
-def cli(config, verbose, preview, trace):
-    config.verbose = verbose
-    configuration.verbose = verbose
+def cli(config, verbose, trace):
+    '''
+    Organise your movies without setting your hair on fire
+    '''
+    config.verbose = int(verbose)
+    configuration.verbose = int(verbose)
     configuration.trace = trace
-    config.preview = preview
 
 
 @cli.command()
 @click.option('--reset-cache', '-r', is_flag=True, help="Reset (delete) the cache before scanning")
+@click.option('--preview', '-p', is_flag=True, help="Previews paths, but generates no output.")
 @click.argument('input', type=click.Path(), required=True)
 @click.argument('output', type=click.Path(), required=True)
-@click.argument('unknown', type=click.Path(), required=True)
+@click.argument('unknown', type=click.Path(), required=False)
 @pass_config
-def scan(config, reset_cache, input, output, unknown):
+def scan(config, reset_cache, preview, input, output, unknown):
+    config.preview = preview
+
+    if unknown is None:
+        unknown = os.path.join(output, 'unknown')
+
     if input == output:
         sys.exit("Error: input and output cannot be the same")
 
@@ -42,11 +50,23 @@ def scan(config, reset_cache, input, output, unknown):
     config.output_folder = os.path.realpath(output)
     config.unknown_folder = os.path.realpath(unknown)
 
+    if config.verbose > 0 or config.verbose > 2:
+        if reset_cache:
+            click.echo('Will remove cache at: {}'.format(
+                mlb.param_name(mlb.cache_filename(configuration.application_name, configuration.movie_cache_filename))))
+
+    if config.preview or config.verbose > 2:
+        click.echo("Input folder: {}".format(mlb.param_name(config.input_folder)))
+        click.echo("Output folder: {}".format(mlb.param_name(config.output_folder)))
+        click.echo("Folder for unrecognized files: {}".format(mlb.param_name(config.unknown_folder)))
+        if config.preview:
+            sys.exit()
+
     cache = mlb.Cache(configuration.application_name, configuration.movie_cache_filename,
                       remove_cache=reset_cache)
     statistics = mlb.Statistics()
 
-    if config.verbose > 0:
+    if config.verbose > 1:
         click.echo("cache-location: {}".format(mlb.param_name(cache.filename)))
         click.echo("appname: {}".format(mlb.param_name(mlb.application_name)))
         click.echo("Scanning folders, input {}, output {}".format(mlb.path_in(input), mlb.path_out(output)))
@@ -56,6 +76,15 @@ def scan(config, reset_cache, input, output, unknown):
     if config.verbose > 0:
         print("{}".format(statistics.string_output()))
         sys.exit()
+
+@cli.command()
+@pass_config
+def list(config):
+    cache = mlb.Cache(configuration.application_name, configuration.movie_cache_filename,
+                      remove_cache=False)
+    cache.restore()
+    mlb.show_list(config, cache)
+
 
 # @cli.command()
 # @click.option('--input-folder', '-i', default=".", type=click.Path(), help="input path")

@@ -1,6 +1,6 @@
 from .utilities import Result, ensure_exists, Logger, format_filename
 from .helpers import ignored
-
+import mowlib as mlb
 import os
 import re
 import json
@@ -168,37 +168,41 @@ def process_folder(cfg, root, cache, stats):
             if ext in cfg.movie_extensions:
                 main_process(cfg=cfg, root=root, filename=filename, cache=cache, stats=stats)
 
-# def rating(args):
-#     cache = Cache(application_name, "movie-cache.json")
-#     genres = defaultdict(int)
-#     max_genres = 0
-#     genre_max_length = 0
-#
-#     # Find how many genres per movie exists...
-#     for each in cache.data.keys():
-#         genre_list = cache.data[each]["data"]["Genre"].split(", ")
-#         max_genres = max(len(genre_list), max_genres)
-#
-#         for each in genre_list:
-#             genres[each] += 1
-#             genre_max_length = max(len(each), genre_max_length)
-#
-#     cols = "{:<" + str(genre_max_length + 2) + "}"
-#
-#     # ...in order to know how many columns to build
-#     for each in cache.data.keys():
-#         s = "{p[imdbRating]} {p[Title]}"
-#
-#         g = cache.data[each]["data"]["Genre"].split(", ")
-#         r_col = ""
-#         for i in g:
-#             r_col += cols.format(i)
-#         s1 = "{p[Runtime]:>7}   {p[imdbRating]}   {p[Title]}".format(p=cache.data[each]["data"])
-#
-#         s2 = ("{:<" + str((genre_max_length + 2) * 3) + "}{}").format(r_col, s1)
-#         print(s2)
-#
-#     # sorted_x = sorted(genres.items(), key=operator.itemgetter(1))
-#     # print(sorted_x)
-#     # print(max_genres)
-#     sys.exit()
+
+@Logger()
+def show_list(cfg, cache):
+    from collections import defaultdict
+    import sys
+    genres = defaultdict(int)
+    max_genres = 0
+    genre_max_length = 0
+
+    # Find how many genres per movie exists...
+    for each in cache.data.keys():
+        genre_list = cache.data[each]["data"]["Genre"].split(", ")
+        max_genres = max(len(genre_list), max_genres)
+
+        for each in genre_list:
+            genres[each] += 1
+            genre_max_length = max(len(each), genre_max_length)
+
+    cols = "{:<" + str(genre_max_length + 2) + "}"
+
+    # ...in order to know how many columns to build
+    for each in cache.data.keys():
+        s = "{p[imdbRating]} {p[Title]}"
+
+        g = cache.data[each]["data"]["Genre"].split(", ")
+        r_col = ""
+        for i in g:
+            r_col += cols.format(i)
+        s1 = "{p[Runtime]:>7}   {p[imdbRating]}   {p[Title]:<35} {l[link]}".format(p=cache.data[each]["data"],
+                                                                                   l=cache.data[each])
+        # s2 = "{l[link]}".format(l=cache.data[each])
+        s2 = ("{:<" + str((genre_max_length + 2) * 3) + "} {}").format(r_col, s1)
+        print(s2)
+
+    # sorted_x = sorted(genres.items(), key=operator.itemgetter(1))
+    # print(sorted_x)
+    # print(max_genres)
+    sys.exit()
