@@ -2,15 +2,25 @@
 # coding=utf-8
 
 from setuptools import setup, find_packages
+import re
+
+VERSIONFILE = "mowlib/_version.py"
+verstrline = open(VERSIONFILE, "rt").read()
+VSRE = r"^__version__ = ['\"]([^'\"]*)['\"]"
+mo = re.search(VSRE, verstrline, re.M)
+if mo:
+    verstr = mo.group(1)
+else:
+    raise RuntimeError("Unable to find version string in %s." % (VERSIONFILE,))
 
 setup(name='mow',
-      version='0.0.4',
+      version=verstr,
       author='Chris Patrick Schreiner',
       author_email='schpaencoder@gmail.com',
-      #url='',
-      #download_url='',
-      description='Organise your movie folders with this utility',
-      long_description='Life is too short organising the contents of your movie-folders',
+      # url='',
+      # download_url='',
+      description='Organise your movie folders, fetch metadata and movie-posters',
+      long_description='Life is too short organising your movie-folders',
       install_requires=[
           'setuptools',
           'Click',

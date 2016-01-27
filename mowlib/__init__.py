@@ -4,6 +4,7 @@ from .helpers import path_out, path_in, m_format, multi_format, ignored, param_n
 from .statistics import Statistics
 from .traverser import process_folder
 from .configuration import verbose, application_name, movie_cache_filename, Config
+from ._version import __version__
 
 __all__ = []
-version = 1.1
+

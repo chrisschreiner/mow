@@ -24,13 +24,14 @@ $> mow --help
 Usage: mow [OPTIONS] COMMAND [ARGS]...
 
 Options:
-  -v, --verbose INTEGER  verbose
-  -p, --preview          preview
-  -t, --trace INTEGER    Include a trace in output
+  -v, --verbose INTEGER  Verbose output, higher is more verbose (0..4)
+  -p, --preview          Preview paths, but do nothing.
+  -t, --trace INTEGER    Include a trace in output, for debugging only.
   --help                 Show this message and exit.
 
 Commands:
   scan
+  list
 ```
 
 

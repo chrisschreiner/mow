@@ -7,7 +7,16 @@ from mowlib import configuration
 pass_config = click.make_pass_decorator(configuration.Config, ensure=True)
 
 
+def print_version(ctx, param, value):
+    if not value or ctx.resilient_parsing:
+        return
+    click.echo('{}, version {} - by @schpaencoder'.format(mlb.application_name, mlb.__version__))
+    ctx.exit()
+
+
 @click.group()
+@click.option('--version', '-V', is_flag=True, callback=print_version,
+              expose_value=False, is_eager=True)
 @click.option('--verbose', '-v', type=int, default=0, help="verbose")
 @click.option('--preview', '-p', is_flag=True, help="preview")
 @click.option('--trace', '-t', type=int, default=0, help='Include a trace in output')
@@ -47,6 +56,7 @@ def scan(config, reset_cache, input, output, unknown):
     if config.verbose > 0:
         print("{}".format(statistics.string_output()))
         sys.exit()
+
 
 # @cli.command()
 # @click.option('--input-folder', '-i', default=".", type=click.Path(), help="input path")

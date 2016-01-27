@@ -4,12 +4,13 @@ import mowlib as mlb
 trace = 0
 verbose = 2
 application_name = "mow"
-movie_cache_filename = "mow-cache.json"
+movie_cache_filename = "{}-cache.json".format(application_name)
 
 
 class Config(object):
     def __init__(self):
         self.verbose = False
+        self.version = mlb.__version__
         self.input_folder = "."
         self.output_folder = "."
         self.unknown_folder = "."
