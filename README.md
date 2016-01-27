@@ -34,7 +34,7 @@ Commands:
 ```
 
 
-### Use-case 1: Scan
+### Use-case 1: **Scan**
 _Pretend you have a folder with downloaded movies from the public domain. You want to clean it up and at the same time fetch meta-data and posters._
 
 ```script
@@ -67,3 +67,15 @@ Look at the results in the following folders when completed:
 *Please note:*
 
 ~/properly-formatted-files/. contain hard-links to the original file.
+### Use-case 2: **List**
+_Pretend you've completed the previous use-case, and you want to generate data from your meta-data_
+
+```script
+$> mow list --help
+Usage: mow list [OPTIONS] OUTPUT IP-ADDRESS
+                                                                  
+Options:                                                            
+  --help             Show this message and exit.   
+```
+
+*coming soon*
