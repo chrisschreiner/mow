@@ -4,7 +4,7 @@
 
 Clean up your folders of ripped movies. Changes filenames (of recognized movies) with a format that your movie app (tvOS/Plex etc) can detect.
 
-Posters and metadata is also retrieved. A future version will enable extraction and processing of more data.
+Metadata and posters are also retrieved. A future version will enable extraction and processing of more data.
 
 ### Requirements
 
