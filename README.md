@@ -16,6 +16,8 @@ Posters and metadata is also retrieved. A future version will enable extraction 
 
 `$> pip install mow`
 
+Don't have pip? https://pip.readthedocs.org/en/stable/installing/#install-pip
+
 ### Usage
 ```script
 $> mow --help
