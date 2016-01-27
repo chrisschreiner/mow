@@ -24,10 +24,15 @@ $> mow --help
 Usage: mow [OPTIONS] COMMAND [ARGS]...
 
 Options:
-  -v, --verbose INTEGER  Verbose output, higher is more verbose (0..4)
-  -p, --preview          Preview paths, but do nothing.
-  -t, --trace INTEGER    Include a trace in output, for debugging only.
-  --help                 Show this message and exit.
+  -V, --version            Show version information.
+  -v, --verbose [0|1|2|3]  Verbose output, higher number indicates more
+                           output.
+  -p, --preview            Previews paths, but generates no output.
+  -t, --trace INTEGER      Include a trace in output, number indicates depth
+                           of calls.
+  --help                   Show this message and exit.
+
+
 
 Commands:
   scan

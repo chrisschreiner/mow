@@ -16,10 +16,10 @@ def print_version(ctx, param, value):
 
 @click.group()
 @click.option('--version', '-V', is_flag=True, callback=print_version,
-              expose_value=False, is_eager=True)
-@click.option('--verbose', '-v', type=int, default=0, help="verbose")
-@click.option('--preview', '-p', is_flag=True, help="preview")
-@click.option('--trace', '-t', type=int, default=0, help='Include a trace in output')
+              expose_value=False, is_eager=True, help="Show version information.")
+@click.option('--verbose', '-v', type=click.Choice(['0','1','2','3']), default='0', help="Verbose output, higher number indicates more output.")
+@click.option('--preview', '-p', is_flag=True, help="Previews paths, but generates no output.")
+@click.option('--trace', '-t', type=int, default=0, help='Include a trace in output, number indicates depth of calls.')
 @pass_config
 def cli(config, verbose, preview, trace):
     config.verbose = verbose
@@ -56,7 +56,6 @@ def scan(config, reset_cache, input, output, unknown):
     if config.verbose > 0:
         print("{}".format(statistics.string_output()))
         sys.exit()
-
 
 # @cli.command()
 # @click.option('--input-folder', '-i', default=".", type=click.Path(), help="input path")
