@@ -1,31 +1,44 @@
 # mow
-
-## Gist
-
 Clean up your movie-folders. Attempts to remove heavily adorned filenames as observed on the interweb. Changes the filename (of recognized entries) with sane estethics – this is more useful to you and your typical movie app (Air Video HD/Plex etc).
 
 The reason I wrote this is to have sane movie-information when I browse the filesystem on my tv.
 
-Metadata and posters are also retrieved (when possible.)
+### wat?
 
-## Forward
+Your filesystem is littered with this:
+
+```
+Dying.of.the.Light.2014.HDRip.XViD-juggs[ETRG].avi
+Earth to Echo  2014  1080p.mp4
+Edge.of.Tomorrow.2014.1080p.BluRay.x264.YIFY.mp4
+Elysium.2013.1080p.BluRay.x264.YIFY.mp4
+```
+
+mow makes it look like this:
+
+```
+Dying of the Light - 2014.avi
+Earth to Echo - 2014.mp4
+Edge of Tomorrow - 2014.mp4
+Elysium - 2013.mp4
+```
+
+Metadata related to the movie (and posters) are also retrieved (when possible.)
+
+### Forward
 
 Broaden the extraction of meta-data.
 
-## Requirements
-
+### Requirements
 Anything with a filesystem running Python 3.5
 
 ## Installation
-
 Ready-made can be downloaded using the python [pip](https://pip.readthedocs.org/en/stable/installing/#install-pip) utility.
-
 ```
 $> `pip install mow`
 ```
 
 ## Usage
-
 ```shell
 $> mow --help
 Usage: mow [OPTIONS] COMMAND [ARGS]...
@@ -76,7 +89,6 @@ $> mow scan ./movie-folder-source ./output/recognized-files-folder ./output/unre
 ```
 
 Output:
-
 ```shell
 ~/output/recognized-files-folder/.
 ~/output/unrecognized-files-folder/.
@@ -93,3 +105,10 @@ Output:
 #### Use-case 2: **List**
 
 You want to show a listing of all movies recognized:
+
+```
+$> mow list
+Adventure  Romance    War          79 min   5.3   Beau Ideal                          ~/output/Beau Ideal (1931).mp4
+Action     Adventure  Drama        75 min   5.1   The Big Cat                         ~/output/The Big Cat (1949).mkv
+Horror     Sci-Fi                  62 min   3.5   Attack of the Giant Leeches         ~/output/Attack of the Giant Leeches (1959).mp4
+```
