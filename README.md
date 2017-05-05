@@ -1,7 +1,7 @@
 # mow
-Clean up your movie-folders. Attempts to remove heavily adorned filenames as observed on the interweb. Changes the filename (of recognized entries) with sane estethics – this is more useful to you and your typical movie app (Air Video HD/Plex etc).
+Clean up your movie-folders. 
 
-The reason I wrote this is to have sane movie-information when I browse the filesystem on my tv.
+The reason I wrote this was to have the filenames themselves be the name of the movie, for those old movie players that never get an update and only presents filenames when browsing (e.g. Air Video HD).
 
 ### wat?
 
