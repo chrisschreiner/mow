@@ -8,32 +8,32 @@ The reason I wrote this is to have sane movie-information when I browse the file
 Your filesystem is littered with this:
 
 ```
-Dying.of.the.Light.2014.HDRip.XViD-juggs[ETRG].avi
-Earth to Echo  2014  1080p.mp4
-Edge.of.Tomorrow.2014.1080p.BluRay.x264.YIFY.mp4
-Elysium.2013.1080p.BluRay.x264.YIFY.mp4
+Dying.of.the.dark.2017.HDRip.XViD-juggs[ETRG].avi
+Earth to bocho  2012  1080p.mp4
+Edge.of.Yesterday.2015.1080p.BluRay.x264.YIFY.mp4
+Drinking.Elysium.(2011).1080p.BluRay.x264.YIFY.mp4
 ```
 
 mow makes it look like this:
 
 ```
-Dying of the Light - 2014.avi
-Earth to Echo - 2014.mp4
-Edge of Tomorrow - 2014.mp4
-Elysium - 2013.mp4
+Dying of the dark - 2017.avi
+Earth to bocho - 2012.mp4
+Edge of Yesterday - 2015.mp4
+Drinking Elysium - 2011.mp4
 ```
 
 Metadata related to the movie (and posters) are also retrieved (when possible.)
 
-### Forward
+### Next
 
-Broaden the extraction of meta-data.
+No idea
 
 ### Requirements
 Anything with a filesystem running Python 3.5
 
 ## Installation
-Ready-made can be downloaded using the python [pip](https://pip.readthedocs.org/en/stable/installing/#install-pip) utility.
+Ready-made can be downloaded using [pip](https://pip.readthedocs.org/en/stable/installing/#install-pip).
 ```
 $> `pip install mow`
 ```
@@ -60,7 +60,7 @@ Commands:
 
 ------
 
-#### Use-case 1: **Scan**
+#### **Scan**
 
 If you have a folder with downloaded movies and you want to have readable filenames and at the same time fetch meta-data and posters. You can use `mow scan`
 
@@ -98,11 +98,11 @@ Output:
 
 *Note:*
 
-`~/output/recognized-files-folder/.` contain hard-links to the original file.
+`~/output/recognized-files-folder/.` contains hard-links to the original file.
 
 ------
 
-#### Use-case 2: **List**
+#### **List**
 
 You want to show a listing of all movies recognized:
 
